@@ -51,10 +51,15 @@ location / {
  
 	location ~ /\.          { access_log off; log_not_found off; deny all; }
 	
-	location ~ \.php {
-		try_files $uri =404;
-		fastcgi_index index.php;
-		fastcgi_pass php5-fpm-sock;
-		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
-		include /etc/nginx/fastcgi_params;
-	}
+	
+location ~ \.php {
+    try_files $uri =404;
+    fastcgi_index index.php;
+    fastcgi_pass php5-fpm-sock;
+    fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
+    include fastcgi_params;
+    fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+    fastcgi_pass php;
+    fastcgi_buffers 256 4k;
+}
+

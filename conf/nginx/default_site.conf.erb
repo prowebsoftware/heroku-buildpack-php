@@ -8,24 +8,7 @@
 #    fastcgi_buffers 256 4k;
 #}
 
-server {
-	listen	:80;
-	server_name www.example.com;
-	rewrite ^/(.*) http://example.com/$1 permanent;
-}
- 
-server {
-	server_name example.com;
-	listen :80;
-	
-	root /srv/www/example.com/public;
- 
-	access_log /srv/www/example.com/logs/access.log;
-	error_log /srv/www/example.com/logs/error.log;
- 
-	index index.html index.php;
- 
-	location / { 
+location / { 
 		try_files $uri $uri/ @rewrites;
 	}
  
@@ -75,4 +58,3 @@ server {
 		fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
 		include /etc/nginx/fastcgi_params;
 	}
-}

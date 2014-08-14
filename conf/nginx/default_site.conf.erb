@@ -1,5 +1,5 @@
 # Default configuration for non-framework apps
-#root /app/<%= ENV['DOCUMENT_ROOT'] %>;
+root /app/<%= ENV['DOCUMENT_ROOT'] %>;
 
 #location ~ \.php {
 #    include fastcgi_params;
@@ -55,10 +55,10 @@ location / {
 location ~ \.php {
     try_files $uri =404;
     fastcgi_index index.php;
-    fastcgi_pass php5-fpm-sock;
     fastcgi_param SCRIPT_FILENAME $document_root$fastcgi_script_name;
     include fastcgi_params;
     fastcgi_param  SCRIPT_FILENAME    $document_root$fastcgi_script_name;
+    #fastcgi_pass php5-fpm-sock;
     fastcgi_pass php;
     fastcgi_buffers 256 4k;
 }

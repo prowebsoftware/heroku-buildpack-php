@@ -56,3 +56,5 @@ tail_log_plex() {
     echo "tail -n 0 -qF --pid=\$\$ ${log_file} &"
   done
 }
+
+echo "HELLO"

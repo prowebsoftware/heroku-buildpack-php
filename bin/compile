@@ -457,6 +457,3 @@ exit 1
 SH
 
 chmod +x "bin/run"
-
-touch /tmp/error.log
-tail -qF -n 0 /tmp/error.log 1>&2 &

@@ -1,1 +1,17 @@
 /vendor/ruby
+
+lib-cov
+*.seed
+*.log
+*.dat
+*.out
+*.pid
+*.gz
+
+pids
+logs
+results
+
+.DS_Store
+
+.idea/*

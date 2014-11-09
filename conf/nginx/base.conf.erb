@@ -29,7 +29,7 @@ http {
     client_body_buffer_size 8K;
     # client_header_buffer_size 1k;
     # client_max_body_size 2m;
-    large_client_header_buffers 2 1k;
+    # large_client_header_buffers 2 1k;
 
     upstream php {
         server unix:/tmp/php-fpm.sock max_fails=3 fail_timeout=3s;

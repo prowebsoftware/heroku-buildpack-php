@@ -3,7 +3,7 @@ worker_processes auto;
 daemon off;
 
 events {
-    worker_connections  1024;
+    worker_connections  2048;
 }
 http {
     # Hide nginx version information.
@@ -11,15 +11,25 @@ http {
 
     sendfile    on;
     tcp_nopush  on;
-    tcp_nodelay off;
+    tcp_nodelay on;
 
     keepalive_timeout  65;
 
     error_log logs/error.log notice;
     access_log logs/access.log;
+    
+    client_body_timeout   10;
+    client_header_timeout 10;
+    keepalive_timeout     15;
+    send_timeout          10;
 
     client_max_body_size 100m;
     client_body_timeout 600s;
+    
+    client_body_buffer_size 8K;
+    client_header_buffer_size 1k;
+    # client_max_body_size 2m;
+    large_client_header_buffers 2 1k;
 
     upstream php {
         server unix:/tmp/php-fpm.sock max_fails=3 fail_timeout=3s;

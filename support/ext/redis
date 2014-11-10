@@ -15,3 +15,9 @@ cd phpredis-${phpredis_version}
 make
 cp modules/redis.so "$EXT_DIR/redis.so"
 echo "extension=redis.so" > "$PREFIX/etc/conf.d/redis.ini"
+
+curl -O http://redis.googlecode.com/files/redis-2.0.0-rc1.tar.gz
+tar -xzvf redis-2.0.0-rc1.tar.gz
+cd redis-2.0.0-rc1
+make
+./redis-server & cd .. &
